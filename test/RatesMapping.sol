@@ -10022,4 +10022,6 @@ contract RatesMapping {
         rates[9999] = 1000000021977967621966555560;
         rates[10000] = 1000000021979553151239153027;
     }
+
+    function test() public {} // Note: added this to exclude this contract from size verification on `forge build --sizes`
 }
