@@ -16,6 +16,10 @@
 
 pragma solidity 0.8.19;
 
+/// @custom:authors [Oddaf]
+/// @custom:reviewers []
+/// @custom:auditors []
+/// @custom:bounties []
 contract Conv {
     uint256 public constant MAX = 5000;
     uint256 internal constant RAY = 10 ** 27;
