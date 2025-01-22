@@ -17,7 +17,7 @@
 pragma solidity 0.8.19;
 
 import "forge-std/Test.sol";
-import "../src/conv.sol";
+import "../src/Conv.sol";
 import "./RatesMapping.sol";
 
 contract ConvTest is Test {
