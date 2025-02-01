@@ -22,7 +22,7 @@ We explored several ways to store or calculate rates onchain. There are tradeoff
 | Plain mapping | 20M gas / 1k rates | Small | Full | 2k gas |
 | Calculating onchain (ABDK lib) | low | Small | Lossy (though close) | 20k gas | External lib also used, not usually accepted for DSS modules |
 | Hardcoded (script generated binary search in Solidity Assembly) | 7M gas / 1k rates | Large (fits up to 800 rates per contract) | Full | 3k gas |
-| **Optimized storage** (this) | 5.6M / 1k rates | Large (fits up to 5k rates on Ethereum mainnet, rates are hardcoded on the constructor) | Full | 3k gas
+| **Optimized storage** (this) | 5.6M / 1k rates | Large (fits up to 5k rates on Ethereum mainnet, rates are hardcoded in the constructor) | Full | 3k gas
 
 Optimized storage was the choice as it represents the best tradeoffs between all the approaches.
 
