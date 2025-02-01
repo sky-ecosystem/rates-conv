@@ -65,10 +65,10 @@ contract ConvTest is Test {
 
     function testFuzz(uint256 bps) public view {
         try conv.turn(bps) returns (uint256 result) {
-            assertTrue(bps <= maxBps);
-            assertEq(result, ratesMapping.rates(bps));
+            assertTrue(bps <= maxBps, "Bps must be less than or equal to maxBps");
+            assertEq(result, ratesMapping.rates(bps), "Result must match mapping rate");
         } catch {
-            assertTrue(bps > maxBps);
+            assertTrue(bps > maxBps, "Bps must be greater than maxBps");
         }
     }
 }
