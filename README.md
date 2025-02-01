@@ -6,7 +6,7 @@ Conv stores all per-second DSS rates for annualized BPSs in a single on-chain re
 
 ### Motivation
 
-Some parts of the DSS protocol may need rate validation, such as the rate validation of the IAM module. This repository aims to implement that.
+Useful for validation using human-friendly notation, which drastically reduces the cognitive overhead when checking rates.
 
 Requirements:
 - The rates need to have full precision compared to rates currently used in DSS (https://ipfs.io/ipfs/QmVp4mhhbwWGTfbh2BzwQB9eiBrQBKiqcPRZCaAxNUaar6)
@@ -15,18 +15,7 @@ Requirements:
 
 ### Design
 
-We explored several ways to store or calculate rates onchain. There are tradeoffs between different approaches as expected:
-
-| Design   | Deployment Cost | Contract Size | Precision | Read Cost | Note |
-| -------- | --------------- | ------------- | --------- | --------- | ---- |
-| Plain mapping | 20M gas / 1k rates | Small | Full | 2k gas |
-| Calculating onchain (ABDK lib) | low | Small | Lossy (though close) | 20k gas | External lib also used, not usually accepted for DSS modules |
-| Hardcoded (script generated binary search in Solidity Assembly) | 7M gas / 1k rates | Large (fits up to 800 rates per contract) | Full | 3k gas |
-| **Optimized storage** (this) | 5.6M / 1k rates | Large (fits up to 5k rates on Ethereum mainnet, rates are hardcoded in the constructor) | Full | 3k gas
-
-Optimized storage was the choice as it represents the best tradeoffs between all the approaches.
-
-### How it works
+We explored several ways to store or calculate rates onchain and arrive at this approach, for details see [this](https://github.com/dewiz-xyz/conv-research).
 
 The contract makes use of optimized storage to ease the cost of deployment. Each rate is stored as `rate - RAY`, so only the relevant part of the rate takes space in storage. Each rate is stored in 8 bytes, so every storage position fits exactly four rates.
 
