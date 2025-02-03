@@ -64,7 +64,7 @@ def generate_contract() -> str:
     
     # Create the contract
     contract_template = f'''// SPDX-License-Identifier: MIT
-pragma solidity 0.8.19;
+pragma solidity 0.8.24;
 
 contract Conv {{
     uint256 constant public MAX = {end_bps};
