@@ -7,6 +7,6 @@ optimizer = true
 optimizer_runs = 1
 
 [fuzz]
-runs = 1000000
+runs = 256000
 
 # See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options

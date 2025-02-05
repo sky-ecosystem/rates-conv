@@ -36,8 +36,8 @@ contract Conv {
 
     /// @notice Fetches the rate for a given basis points value
     /// @param bps The basis points value to get the rate for
-    /// @return rate The annual rate value
-    function turn(uint256 bps) public view returns (uint256 rate) {
+    /// @return ray The annual rate value
+    function turn(uint256 bps) public view returns (uint256 ray) {
         require(bps <= MAX);
 
         assembly {
@@ -51,7 +51,53 @@ contract Conv {
 
             let shifted := shr(mul(sub(24, bytePos), 8), value)
 
-            rate := add(and(shifted, 0xFFFFFFFFFFFFFFFF), RAY)
+            ray := add(and(shifted, 0xFFFFFFFFFFFFFFFF), RAY)
         }
     }
+
+    /// @notice Fetches the yearly bps rate for a given per second rate
+    /// @param ray The per second rate to get the rate for
+    /// @return bps The annual rate value
+    function nrut(uint256 ray) public pure returns (uint256 bps) {
+        // Convert per-second rate to per-year rate using rpow
+        uint256 yearlyRate = _rpow(ray, 365 days);
+        // Subtract RAY to get the yearly rate delta and convert to basis points
+        // Add RAY/2 for rounding: ensures values are rounded up when >= 0.5 and down when < 0.5
+        return ((yearlyRate - RAY) * 10000 + RAY / 2) / RAY;
+    }
+
+    /// @notice Exponentiate `x` to `n` by squaring
+    /// @param x The base
+    /// @param n The exponent
+    /// @return z The result
+    function _rpow(uint256 x, uint256 n) internal pure returns (uint256 z) {
+        assembly {
+            switch x
+            case 0 {
+                switch n
+                case 0 { z := RAY }
+                default { z := 0 }
+            }
+            default {
+                switch mod(n, 2)
+                case 0 { z := RAY }
+                default { z := x }
+                let half := div(RAY, 2) // for rounding.
+                for { n := div(n, 2) } n { n := div(n, 2) } {
+                    let xx := mul(x, x)
+                    if iszero(eq(div(xx, x), x)) { revert(0, 0) }
+                    let xxRound := add(xx, half)
+                    if lt(xxRound, xx) { revert(0, 0) }
+                    x := div(xxRound, RAY)
+                    if mod(n, 2) {
+                        let zx := mul(z, x)
+                        if and(iszero(iszero(x)), iszero(eq(div(zx, x), z))) { revert(0, 0) }
+                        let zxRound := add(zx, half)
+                        if lt(zxRound, zx) { revert(0, 0) }
+                        z := div(zxRound, RAY)
+                    }
+                }
+            }
+        }
+    }    
 }
