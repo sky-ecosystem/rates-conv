@@ -21,7 +21,8 @@ pragma solidity 0.8.24;
 /// @custom:auditors []
 /// @custom:bounties []
 contract Conv {
-    uint256 public constant MAX = 5000;
+    /// @notice The max bps supported in bps -> rate conversion.
+    uint256 public constant MAX = 50_00;
     uint256 internal constant RAY = 10 ** 27;
 
     // Each rate takes 8 bytes (64 bits), total of 5001 rates
