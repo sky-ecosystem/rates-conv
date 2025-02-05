@@ -66,9 +66,9 @@ contract Conv {
         return ((yearlyRate - RAY) * 10000 + RAY / 2) / RAY;
     }
 
-    /// @notice Exponentiate `x` to `n` by squaring
-    /// @param x The base
-    /// @param n The exponent
+    /// @notice Exponentiate `x` (RAY, 27 decimal places) to `n` () by squaring
+    /// @param x The base (RAY, 27 decimal places)
+    /// @param n The exponent (integer, 0 decimal places)
     /// @return z The result
     function _rpow(uint256 x, uint256 n) internal pure returns (uint256 z) {
         assembly {
