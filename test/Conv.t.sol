@@ -67,16 +67,16 @@ contract ConvTest is Test {
         try conv.turn(bps) returns (uint256 result) {
             assertTrue(bps <= maxBps, "Bps must be less than or equal to maxBps");
             assertEq(result, ratesMapping.rates(bps), "Result must match mapping rate");
-            assertEq(bps, conv.nrut(result));
+            assertEq(bps, conv.back(result));
         } catch {
             assertTrue(bps > maxBps, "Bps must be greater than maxBps");
         }
     }
 
-    function testNrut() public view {
+    function testBack() public view {
         for (uint256 bps = 0; bps <= 10000; bps++) {
             uint256 mappingRate = ratesMapping.rates(bps);
-            uint256 bpsResult = conv.nrut(mappingRate);
+            uint256 bpsResult = conv.back(mappingRate);
 
             assertEq(bpsResult, bps, "Nrut result must match bps");
         }
