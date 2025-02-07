@@ -31,24 +31,24 @@ contract ConvTest is Test {
         maxBps = conv.MAX();
     }
 
-    function testTurn() public view {
+    function tesBbtor() public view {
         for (uint256 bps = 0; bps <= maxBps; bps++) {
             uint256 mappingRate = ratesMapping.rates(bps);
-            uint256 bytesRate = conv.turn(bps);
+            uint256 bytesRate = conv.btor(bps);
 
             assertEq(bytesRate, mappingRate, string.concat("Rate mismatch at bps=", vm.toString(bps)));
         }
     }
 
-    function testTurnRevertsForInvalidBps() public {
+    function testBtorRevertsForInvalidBps() public {
         vm.expectRevert();
-        conv.turn(maxBps + 1);
+        conv.btor(maxBps + 1);
 
         vm.expectRevert();
-        conv.turn(maxBps + 100);
+        conv.btor(maxBps + 100);
 
         vm.expectRevert();
-        conv.turn(1000 ether);
+        conv.btor(1000 ether);
     }
 
     function testGas() public {
@@ -58,25 +58,25 @@ contract ConvTest is Test {
 
         for (uint256 i; i <= maxBps; i += 123) {
             gasBefore = gasleft();
-            conv.turn(i);
+            conv.btor(i);
             console.log("Turn bps", i, ":", gasBefore - gasleft());
         }
     }
 
     function testFuzz(uint256 bps) public view {
-        try conv.turn(bps) returns (uint256 result) {
+        try conv.btor(bps) returns (uint256 result) {
             assertTrue(bps <= maxBps, "Bps must be less than or equal to maxBps");
             assertEq(result, ratesMapping.rates(bps), "Result must match mapping rate");
-            assertEq(bps, conv.back(result));
+            assertEq(bps, conv.rtob(result));
         } catch {
             assertTrue(bps > maxBps, "Bps must be greater than maxBps");
         }
     }
 
-    function testBack() public view {
+    function testRtob() public view {
         for (uint256 bps = 0; bps <= 10000; bps++) {
             uint256 mappingRate = ratesMapping.rates(bps);
-            uint256 bpsResult = conv.back(mappingRate);
+            uint256 bpsResult = conv.rtob(mappingRate);
 
             assertEq(bpsResult, bps, "Nrut result must match bps");
         }
