@@ -67,7 +67,7 @@ contract Conv {
         return ((yearlyRate - RAY) * 10000 + RAY / 2) / RAY;
     }
 
-    /// @notice Exponentiate `x` (RAY, 27 decimal places) to `n` () by squaring
+    /// @notice Exponentiate `x` to `n` by squaring
     /// @param x The base (RAY, 27 decimal places)
     /// @param n The exponent (integer, 0 decimal places)
     /// @return z The result
