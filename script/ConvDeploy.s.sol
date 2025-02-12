@@ -32,6 +32,6 @@ contract ConvDeployScript is Script {
 
         vm.stopBroadcast();
 
-        ScriptTools.exportContract(NAME, "conv", conv);
+        ScriptTools.exportContract(NAME, "conv", address(conv));
     }
 }
