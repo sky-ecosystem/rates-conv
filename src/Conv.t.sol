@@ -17,8 +17,8 @@
 pragma solidity ^0.8.24;
 
 import "forge-std/Test.sol";
-import "../src/Conv.sol";
-import "./RatesMapping.sol";
+import "./Conv.sol";
+import "./mock/RatesMapping.sol";
 
 contract ConvTest is Test {
     Conv public conv;
