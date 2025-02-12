@@ -54,5 +54,7 @@ $ forge snapshot
 ### Deploy
 
 ```shell
-$ forge create Conv --broadcast
+$ forge script script/ConvDeploy.s.sol:ConvDeployScript \
+    --rpc-url $ETH_RPC_URL \
+    --broadcast
 ```
