@@ -31,7 +31,7 @@ def parse_rates(text):
 
 def generate_solidity_contract(rates):
     contract_template = '''// SPDX-License-Identifier: AGPL-3.0-or-later
-pragma solidity 0.8.24;
+pragma solidity ^0.8.24;
 
 contract RatesMapping {
     mapping(uint256 => uint256) public rates;
