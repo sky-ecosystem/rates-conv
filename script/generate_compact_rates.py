@@ -33,7 +33,7 @@ def generate_contract() -> str:
     all_bytes = []
     
     # Get rates from RatesMapping.sol
-    rates = parse_rates_mapping('test/RatesMapping.sol')
+    rates = parse_rates_mapping('src/mock/RatesMapping.sol')
     
     # Sort rates by bps to ensure correct order
     sorted_bps = sorted(rates.keys())
