@@ -21,7 +21,9 @@ We explored several ways to store or calculate rates onchain and arrive at this 
 
 The contract makes use of optimized storage to ease the cost of deployment. Each rate is stored as `rate - RAY`, so only the relevant part of the rate takes space in storage. Each rate is stored in 8 bytes, so every storage position fits exactly four rates.
 
-On reads, the function `btor(bps)` will fetch the correct storage slot, fetch the desired rate within it, add one RAY and return the result
+On reads, the function `btor(bps)` will fetch the correct storage slot, fetch the desired rate within it, add one RAY and return the result.
+
+The contract also includes a conversion function `rtob(ray)` that calculates the annualized BPS rate from the per-second rate.
 
 ### Limitations
 
