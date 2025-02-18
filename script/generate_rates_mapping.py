@@ -51,7 +51,7 @@ contract RatesMapping {
 
 def main():
     ipfs_url = "https://ipfs.io/ipfs/QmVp4mhhbwWGTfbh2BzwQB9eiBrQBKiqcPRZCaAxNUaar6"
-    output_file = Path("/Users/odd/Documents/rates-repository/test/RatesMapping.sol")
+    output_file = Path("./RatesMapping.sol")
     
     # Fetch and combine all chunks
     print("Fetching data from IPFS...")
