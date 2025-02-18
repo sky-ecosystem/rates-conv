@@ -41,7 +41,7 @@ contract Conv {
     /// @notice Fetches the rate for a given basis points value
     /// @param bps The basis points value to get the rate for
     /// @return ray The annual rate value
-    function btor(uint256 bps) public view returns (uint256 ray) {
+    function btor(uint256 bps) external view returns (uint256 ray) {
         require(bps <= MAX);
 
         assembly {
