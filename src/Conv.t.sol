@@ -31,7 +31,7 @@ contract ConvTest is Test {
         maxBps = conv.MAX();
     }
 
-    function tesBbtor() public view {
+    function testBtor() public view {
         for (uint256 bps = 0; bps <= maxBps; bps++) {
             uint256 mappingRate = ratesMapping.rates(bps);
             uint256 bytesRate = conv.btor(bps);
