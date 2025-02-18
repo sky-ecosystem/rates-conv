@@ -59,7 +59,7 @@ contract Conv {
         }
     }
 
-    /// @notice Fetches the yearly bps rate for a given per second rate
+    /// @notice Calculates the yearly bps rate for a given per second rate
     /// @param ray The per second rate to get the rate for
     /// @return bps The annual rate value
     function rtob(uint256 ray) public pure returns (uint256 bps) {
