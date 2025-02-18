@@ -78,7 +78,7 @@ contract ConvTest is Test {
             uint256 mappingRate = ratesMapping.rates(bps);
             uint256 bpsResult = conv.rtob(mappingRate);
 
-            assertEq(bpsResult, bps, "Nrut result must match bps");
+            assertEq(bpsResult, bps, "rtob result must match bps");
         }
     }
 }
