@@ -27,7 +27,7 @@ contract GasMeteringScript is Script {
         conv = new Conv();
         console.log("Deploy: ", gasBefore - gasleft());
 
-        for (uint256 i; i <= 50_000; i += 123) {
+        for (uint256 i; i <= 5_000; i += 123) {
             gasBefore = gasleft();
             conv.btor(i);
             console.log("Turn bps", i, ":", gasBefore - gasleft());
