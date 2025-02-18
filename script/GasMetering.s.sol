@@ -22,7 +22,7 @@ import {Conv} from "src/Conv.sol";
 contract GasMeteringScript is Script {
     function run() external {
         Conv conv;
-        
+
         uint256 gasBefore = gasleft();
         conv = new Conv();
         console.log("Deploy: ", gasBefore - gasleft());

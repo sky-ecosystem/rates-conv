@@ -80,13 +80,21 @@ def generate_contract() -> str:
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 pragma solidity ^0.8.24;
 
+/**
+ * @title Yearly Basis Points to per second RAY rate converter
+ * @notice Utility contract to convert yearly basis points to per second RAY rate with full precision.
+ * @custom:authors []
+ * @custom:reviewers []
+ * @custom:auditors []
+ * @custom:bounties []
+*/
 contract Conv {{
     uint256 constant public MAX = {end_bps};
     uint256 constant internal RAY = 10**27;
     
-    // Each rate takes 8 bytes (64 bits), total of {len(sorted_bps)} rates
-    // Each storage word (32 bytes) contains exactly 4 rates
-    // Total size = {len(sorted_bps)} * 8 = {len(sorted_bps) * 8} bytes
+    /// @dev Each rate takes 8 bytes (64 bits), total of {len(sorted_bps)} rates
+    /// @dev Each storage word (32 bytes) contains exactly 4 rates
+    /// @dev Total size = {len(sorted_bps)} * 8 = {len(sorted_bps) * 8} bytes
     bytes internal RATES = {compact_bytes};
 
     /// @notice Fetches the rate for a given basis points value
