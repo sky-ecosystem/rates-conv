@@ -51,18 +51,6 @@ contract ConvTest is Test {
         conv.btor(1000 ether);
     }
 
-    function testGas() public {
-        uint256 gasBefore = gasleft();
-        new Conv();
-        console.log("Deploy: ", gasBefore - gasleft());
-
-        for (uint256 i; i <= maxBps; i += 123) {
-            gasBefore = gasleft();
-            conv.btor(i);
-            console.log("Turn bps", i, ":", gasBefore - gasleft());
-        }
-    }
-
     function testFuzz_Btor(uint256 bps) public view {
         try conv.btor(bps) returns (uint256 result) {
             assertTrue(bps <= maxBps, "Bps must be less than or equal to maxBps");
