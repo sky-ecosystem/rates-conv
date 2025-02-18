@@ -23,7 +23,6 @@ contract ConvDeployScript is Script {
     using ScriptTools for string;
 
     string constant NAME = "conv-deploy";
-    string config;
 
     function run() external {
         vm.startBroadcast();
