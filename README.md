@@ -1,8 +1,10 @@
 ## Conv
 
-**Onchain repository for DSS rates**
+On-chain repository for MCD rates.
 
-Conv stores all per-second DSS rates for annualized BPSs in a single on-chain repository.
+`Conv` stores all per-second MCD rates for annualized BPSs in a single on-chain repository.
+
+It allows to convert BPS into `RAY` accumulators and _vice versa_.
 
 ### Motivation
 
