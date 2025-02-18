@@ -87,16 +87,12 @@ contract Conv {{
     // Each rate takes 8 bytes (64 bits), total of {len(sorted_bps)} rates
     // Each storage word (32 bytes) contains exactly 4 rates
     // Total size = {len(sorted_bps)} * 8 = {len(sorted_bps) * 8} bytes
-    bytes internal RATES;
-
-    constructor() {{
-        RATES = {compact_bytes};
-    }}
+    bytes internal RATES = {compact_bytes};
 
     /// @notice Fetches the rate for a given basis points value
     /// @param bps The basis points value to get the rate for
     /// @return rate The annual rate value
-    function turn(uint256 bps) public view returns (uint256 rate) {{
+    function turn(uint256 bps) external view returns (uint256 rate) {{
         require(bps <= MAX);
         
         assembly {{
