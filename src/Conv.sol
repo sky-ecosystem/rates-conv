@@ -18,7 +18,7 @@ pragma solidity ^0.8.24;
 
 /**
  * @title Yearly Basis Points to per second RAY rate converter
- * @notice Utility contract to convert yearly basis points to per second RAY rate with full precision.
+ * @notice Utility contract to convert between yearly basis points and per second RAY rate in both directions with full precision.
  * @custom:authors [Oddaf]
  * @custom:reviewers []
  * @custom:auditors []
