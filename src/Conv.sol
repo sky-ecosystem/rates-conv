@@ -63,6 +63,8 @@ contract Conv {
     /// @param ray The per second rate to get the rate for
     /// @return bps The annual rate value
     function rtob(uint256 ray) external pure returns (uint256 bps) {
+        require(ray >= RAY, "Conv/ray-too-low");
+
         // Convert per-second rate to per-year rate using rpow
         uint256 yearlyRate = _rpow(ray, 365 days);
         // Subtract RAY to get the yearly rate delta and convert to basis points
