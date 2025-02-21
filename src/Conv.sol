@@ -42,7 +42,7 @@ contract Conv {
     /// @param bps The basis points value to get the rate for
     /// @return ray The annual rate value
     function btor(uint256 bps) external view returns (uint256 ray) {
-        require(bps <= MAX);
+        require(bps <= MAX, "Conv/bps-too-high");
 
         assembly {
             let offset := mul(bps, 8) // Each rate is 8 bytes
