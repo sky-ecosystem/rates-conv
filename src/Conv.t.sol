@@ -41,7 +41,7 @@ contract ConvTest is Test {
     }
 
     function testRevert_Btor_WhenInvalidBps() public {
-        vm.expectRevert();
+        vm.expectRevert("Conv/bps-too-high");
         conv.btor(maxBps + 1);
 
     }
