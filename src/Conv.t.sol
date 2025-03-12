@@ -64,4 +64,9 @@ contract ConvTest is Test {
             assertEq(bpsResult, bps, "rtob result must match bps");
         }
     }
+
+    function testRevert_Rtob_RayTooLow() public {
+        vm.expectRevert("Conv/ray-too-low");
+        conv.rtob(0);
+    }    
 }
