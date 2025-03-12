@@ -57,5 +57,5 @@ contract ConvTest is Test {
     function testRevert_Rtob_RayTooLow() public {
         vm.expectRevert("Conv/ray-too-low");
         conv.rtob(0);
-    }    
+    }
 }
