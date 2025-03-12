@@ -29,7 +29,7 @@ The contract also includes a conversion function `rtob(ray)` that calculates the
 
 - Since rates are stored in 8 bytes, the max BPS that can be used without reimplementing this contract is **7891**.
 - EIP-170: Due to contract size limits on Ethereum mainnet, the ceiling for rates is 6k. On L2s that do not enforce the limit this does not apply.
-- Gas cost of deployment: With the current 30M block gas ceiling on Ethereum mainnet, up to ~5.5k rates can be stored.
+- Gas cost of deployment: With the current ~36M block gas ceiling on Ethereum mainnet, up to ~5.5k rates can be stored in a single transaction.
 
 ## Deployments
 
