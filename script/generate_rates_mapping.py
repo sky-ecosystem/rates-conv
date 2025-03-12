@@ -50,7 +50,7 @@ contract RatesMapping {
     return contract_template % constructor_body
 
 def main():
-    ipfs_url = "https://ipfs.io/ipfs/QmVp4mhhbwWGTfbh2BzwQB9eiBrQBKiqcPRZCaAxNUaar6"
+    ipfs_url = "https://ipfs.io/ipfs/QmVp4mhhbwWGTfbh2BzwQB9eiBrQBKiqcPRZCaAxNUaar6" # https://github.com/makerdao/pe-checklists/blob/161895d52e144fec1e4d8cca52f1379ce63950cb/spell/spell-reviewer-mainnet-checklist.md?plain=1#L77
     output_file = Path("./src/mock/RatesMapping.sol")
     
     # Fetch and combine all chunks
