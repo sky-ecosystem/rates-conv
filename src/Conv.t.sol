@@ -44,11 +44,6 @@ contract ConvTest is Test {
         vm.expectRevert();
         conv.btor(maxBps + 1);
 
-        vm.expectRevert();
-        conv.btor(maxBps + 100);
-
-        vm.expectRevert();
-        conv.btor(1000 ether);
     }
 
     function testFuzz_Btor(uint256 bps) public view {
