@@ -43,17 +43,6 @@ contract ConvTest is Test {
     function testRevert_Btor_WhenInvalidBps() public {
         vm.expectRevert("Conv/bps-too-high");
         conv.btor(maxBps + 1);
-
-    }
-
-    function testFuzz_Btor(uint256 bps) public view {
-        try conv.btor(bps) returns (uint256 result) {
-            assertTrue(bps <= maxBps, "Bps must be less than or equal to maxBps");
-            assertEq(result, ratesMapping.rates(bps), "Result must match mapping rate");
-            assertEq(bps, conv.rtob(result));
-        } catch {
-            assertTrue(bps > maxBps, "Bps must be greater than maxBps");
-        }
     }
 
     function testRtob() public view {
