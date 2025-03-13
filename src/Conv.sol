@@ -44,19 +44,17 @@ contract Conv {
     function btor(uint256 bps) external view returns (uint256 ray) {
         require(bps <= MAX, "Conv/bps-too-high");
 
+        uint256 offset = bps * 8; // Each rate is 8 bytes
+        (uint256 wordPos, uint256 bytePos) = (offset / 32, offset % 32);
+
+        bytes32 value;
         assembly {
-            let offset := mul(bps, 8) // Each rate is 8 bytes
-            let wordPos := div(offset, 32) // Which 32-byte word to read
-            let bytePos := mod(offset, 32) // Position within the word
-
             let dataSlot := keccak256(RATES.slot, 0x20)
-
-            let value := sload(add(dataSlot, wordPos))
-
-            let shifted := shr(mul(sub(24, bytePos), 8), value)
-
-            ray := add(and(shifted, 0xFFFFFFFFFFFFFFFF), RAY)
+            value := sload(add(dataSlot, wordPos))
         }
+
+        uint256 shifted = uint256(value) >> ((24 - bytePos) * 8);
+        ray = (shifted & 0xFFFFFFFFFFFFFFFF) + RAY;
     }
 
     /// @notice Calculates the yearly bps rate for a given per second rate
