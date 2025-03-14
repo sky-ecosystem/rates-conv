@@ -11,7 +11,7 @@ It allows to convert BPS into `RAY` accumulators and _vice versa_.
 Useful for validation using human-friendly notation, which drastically reduces the cognitive overhead when checking rates.
 
 Requirements:
-- The rates need to have full precision compared to rates currently used in MCD (https://ipfs.io/ipfs/QmVp4mhhbwWGTfbh2BzwQB9eiBrQBKiqcPRZCaAxNUaar6)
+- The rates need to have full precision compared to rates currently used in MCD [Spell process](https://github.com/makerdao/pe-checklists/blob/161895d52e144fec1e4d8cca52f1379ce63950cb/spell/spell-reviewer-mainnet-checklist.md?plain=1#L77).
 - Read cost should be reasonable, allowing other components of the system to use it without too much overhead.
 - The contract needs to be deployable efficiently (low priority, one time cost).
 
