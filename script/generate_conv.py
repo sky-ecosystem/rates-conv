@@ -28,7 +28,7 @@ def pack_rates(rates):
     return bytes(packed)
 
 def generate_data() -> str:
-    """Generate compact bytes representation and contract for all rates in RatesMapping.sol."""
+    """Generate compact bytes representation and contract for all rates in Conv.sol."""
     RAY = 10**27
     all_bytes = []
     

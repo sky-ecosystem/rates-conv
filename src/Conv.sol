@@ -26,7 +26,7 @@ pragma solidity ^0.8.24;
  */
 contract Conv {
     /// @notice The max bps supported in bps -> rate conversion.
-    uint256 public constant MAX = 50_00;
+    uint256 public constant MAX_BPS_IN = 50_00;
     /// @dev `ray` precision
     uint256 internal constant RAY = 10 ** 27;
     /// @dev `bps` precision
