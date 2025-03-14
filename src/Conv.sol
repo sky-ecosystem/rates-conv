@@ -42,7 +42,7 @@ contract Conv {
     /// @param bps The basis points value to get the rate for
     /// @return ray The annual rate value
     function btor(uint256 bps) external view returns (uint256 ray) {
-        require(bps <= MAX, "Conv/bps-too-high");
+        require(bps <= MAX_BPS_IN, "Conv/bps-too-high");
 
         uint256 offset = bps * 8; // Each rate is 8 bytes
         (uint256 wordPos, uint256 bytePos) = (offset / 32, offset % 32);

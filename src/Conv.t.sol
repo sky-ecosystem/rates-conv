@@ -28,7 +28,7 @@ contract ConvTest is Test {
     function setUp() public {
         conv = new Conv();
         ratesMapping = new RatesMapping();
-        maxBps = conv.MAX();
+        maxBps = conv.MAX_BPS_IN();
     }
 
     function testBtor() public view {
