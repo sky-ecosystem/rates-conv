@@ -68,5 +68,4 @@ contract ConvTest is Test {
             assertEq(conv.btor(conv.rtob(mappingRate)), mappingRate, "btor(rtob(ray)) must equal ray");
         }
     }
-
 }
