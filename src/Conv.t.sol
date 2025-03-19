@@ -58,4 +58,15 @@ contract ConvTest is Test {
         vm.expectRevert("Conv/ray-too-low");
         conv.rtob(0);
     }
+
+    function testInvariants() public view {
+        for (uint256 bps = 0; bps <= maxBps; bps++) {
+            uint256 mappingRate = ratesMapping.rates(bps);
+
+            // rtob(btor(bps)) == bps and btor(rtob(ray)) == ray
+            assertEq(conv.rtob(conv.btor(bps)), bps, "rtob(btor(bps)) must equal bps");
+            assertEq(conv.btor(conv.rtob(mappingRate)), mappingRate, "btor(rtob(ray)) must equal ray");
+        }
+    }
+
 }
