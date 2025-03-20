@@ -36,7 +36,7 @@ contract Conv {
 
     /// @notice Fetches the rate for a given basis points value
     /// @param bps The basis points value to get the rate for
-    /// @return ray The annual rate value
+    /// @return ray The per-second rate value
     function btor(uint256 bps) external view returns (uint256 ray) {
         require(bps <= MAX_BPS_IN, "Conv/bps-too-high");
 
