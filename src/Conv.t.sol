@@ -45,6 +45,12 @@ contract ConvTest is Test {
         conv.btor(maxBps + 1);
     }
 
+    function testFuzz_Btor_InvalidBps(uint256 bps) public {
+        bps = bound(bps, maxBps + 1, type(uint256).max);
+        vm.expectRevert("Conv/bps-too-high");
+        conv.btor(bps);
+    }
+
     function testRtob() public view {
         for (uint256 bps = 0; bps <= 10000; bps++) {
             uint256 mappingRate = ratesMapping.rates(bps);
