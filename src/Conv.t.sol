@@ -64,6 +64,12 @@ contract ConvTest is Test {
         vm.expectRevert("Conv/ray-too-low");
         conv.rtob(0);
     }
+    
+    function testFuzz_Rtob_InvalidRay(uint256 ray) public {
+        ray = bound(ray, 0, RAY - 1);
+        vm.expectRevert("Conv/ray-too-low");
+        conv.rtob(ray);
+    }
 
     function testInvariants() public view {
         for (uint256 bps = 0; bps <= maxBps; bps++) {
