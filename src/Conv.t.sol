@@ -24,6 +24,7 @@ contract ConvTest is Test {
     Conv public conv;
     RatesMapping public ratesMapping;
     uint256 public maxBps;
+    uint256 public constant RAY = 10 ** 27;
 
     function setUp() public {
         conv = new Conv();
@@ -64,7 +65,7 @@ contract ConvTest is Test {
         vm.expectRevert("Conv/ray-too-low");
         conv.rtob(0);
     }
-    
+
     function testFuzz_Rtob_InvalidRay(uint256 ray) public {
         ray = bound(ray, 0, RAY - 1);
         vm.expectRevert("Conv/ray-too-low");
