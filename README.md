@@ -33,7 +33,7 @@ The contract also includes a conversion function `rtob(ray)` that calculates the
 
 ## Deployments
 
-- **5000bps Ethereum Mainnet**: tbd
+- **5000bps Ethereum Mainnet**: 0xea91A18dAFA1Cb1d2a19DFB205816034e6Fe7e52
 
 ## Usage
 
