@@ -44,9 +44,12 @@ contract Conv {
         (uint256 wordPos, uint256 bytePos) = (offset / 32, offset % 32);
 
         bytes32 value;
-        assembly {
-            let dataSlot := keccak256(RATES.slot, 0x20)
+        assembly ("memory-safe") {
+            let free_mem_ptr := mload(0x40)
+            mstore(free_mem_ptr, RATES.slot)
+            let dataSlot := keccak256(free_mem_ptr, 0x20)
             value := sload(add(dataSlot, wordPos))
+            mstore(0x40, add(free_mem_ptr, 0x20))
         }
 
         uint256 shifted = uint256(value) >> ((24 - bytePos) * 8);
