@@ -35,7 +35,7 @@ The contract also includes a conversion function `rtob(ray)` that calculates the
 
 - **5000bps Ethereum Mainnet**: 0xea91A18dAFA1Cb1d2a19DFB205816034e6Fe7e52
 
-**Note**: The Mainnet deployment above contains a bug fixed in [c831a6b](https://github.com/sky-ecosystem/rates-conv/pull/4/commits/c831a6bf4566d150d79ade12ac1f532da62940bc). The bug does not affect the contract, but for future deployments the fixed version should be used.
+**Note**: The Mainnet deployment above contains a bug fixed in [PR #4](https://github.com/sky-ecosystem/rates-conv/pull/4), that would cause calls to the contract to fail if RATES storage slot is not 0. This does not affect the deployed contract (the storage layout cannot change after deployment) but future deployments should favor fixed version. For full details on the issue check [PR #4](https://github.com/sky-ecosystem/rates-conv/pull/4).
 
 ## Usage
 
