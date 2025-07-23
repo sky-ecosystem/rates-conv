@@ -44,8 +44,12 @@ contract Conv {
         (uint256 wordPos, uint256 bytePos) = (offset / 32, offset % 32);
 
         bytes32 value;
-        assembly {
-            let dataSlot := keccak256(RATES.slot, 0x20)
+        assembly ("memory-safe") {
+            // The first 64 bytes of memory are scratch space.
+            // We use memory location 0x00 to store the slot of the mapping.
+            // See https://docs.soliditylang.org/en/latest/assembly.html
+            mstore(0x00, RATES.slot)
+            let dataSlot := keccak256(0x00, 0x20)
             value := sload(add(dataSlot, wordPos))
         }
 

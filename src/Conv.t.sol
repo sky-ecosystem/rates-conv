@@ -20,6 +20,12 @@ import "forge-std/Test.sol";
 import "./Conv.sol";
 import "./mock/RatesMapping.sol";
 
+abstract contract StorageAddition {
+    uint256 a;
+}
+
+contract ModifiedConv is StorageAddition, Conv {}
+
 contract ConvTest is Test {
     Conv public conv;
     RatesMapping public ratesMapping;
@@ -35,9 +41,23 @@ contract ConvTest is Test {
     function testBtor() public view {
         for (uint256 bps = 0; bps <= maxBps; bps++) {
             uint256 mappingRate = ratesMapping.rates(bps);
-            uint256 bytesRate = conv.btor(bps);
+            uint256 convRate = conv.btor(bps);
 
-            assertEq(bytesRate, mappingRate, string.concat("Rate mismatch at bps=", vm.toString(bps)));
+            assertEq(convRate, mappingRate, string.concat("Rate mismatch at bps=", vm.toString(bps)));
+        }
+    }
+
+    function testBtorRatesInDifferentStorageSlot() public {
+        ModifiedConv modifiedConv = new ModifiedConv();
+        for (uint256 bps = 0; bps <= maxBps; bps++) {
+            uint256 mappingRate = ratesMapping.rates(bps);
+            uint256 convRate = modifiedConv.btor(bps);
+
+            assertEq(
+                convRate,
+                mappingRate,
+                string.concat("Rate mismatch with modified RATES storage position at bps=", vm.toString(bps))
+            );
         }
     }
 
