@@ -64,3 +64,14 @@ $ forge script script/ConvDeploy.s.sol:ConvDeployScript \
     --rpc-url $ETH_RPC_URL \
     --broadcast
 ```
+
+## Audits
+
+Audit reports are hosted on the auditors' public portfolio pages:
+
+| Auditor | Report | Date |
+| --- | --- | --- |
+| ChainSecurity | [Sky Rates Converter](https://www.chainsecurity.com/security-audit/sky-rates-converter/) | 2025-08-15 |
+| Cantina | [rates-conv](https://cantina.xyz/portfolio/dde2881b-851d-40a9-a6f5-3c8d128e884a) | 2025-03-21 |
+
+ChainSecurity reports are cumulative: each portfolio page hosts the latest version of the report, which covers all previously reviewed versions.
